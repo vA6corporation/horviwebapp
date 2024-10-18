@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Detalles</h2>
+@if (seace) {
+    <div mat-dialog-content>
+        @if (seace.notification) {
+            <p class="d-flex justify-content-between">
+                <span>
+                    Comercial a cargo
+                </span>
+                <span>
+                    {{ seace.notification.commercial.name | uppercase }}
+                </span>
+            </p>
+        }
+        <p class="d-flex justify-content-between">
+            <span>
+                Nomenclatura
+            </span>
+            <span>
+                {{ seace.nomenclature }}
+            </span>
+        </p>
+        <p class="d-flex justify-content-between">
+            <span>
+                Beneficiario
+            </span>
+            <span>
+                {{ seace.convener }}
+            </span>
+        </p>
+        <mat-divider></mat-divider>
+        <div class="pb-3"></div>
+        <h2 class="mat-title-medium">Postor</h2>
+        <mat-list role="list">
+            @for (winner of seace.winners; track $index) {
+            <mat-list-item role="listitem" class="px-0">{{ winner }}</mat-list-item>
+            } @empty {
+                <mat-list-item role="listitem" class="px-0 text-muted text-center">SIN PORSTOR</mat-list-item>
+            }
+        </mat-list>
+    </div>
+}
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button" mat-raised-button mat-dialog-close>VOLVER</button>
+</mat-dialog-actions>

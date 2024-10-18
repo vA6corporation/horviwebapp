@@ -1,0 +1,23 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <h2 mat-dialog-title>Agregar políticas de rotación de cuentas</h2>
+    <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de cuenta</mat-label>
+        <mat-select formControlName="typeAccount">
+          <mat-option value="Cuentas por Pagar">Cuentas por Pagar</mat-option>
+          <mat-option value="Cuentas por Cobrar">Cuentas por Cobrar</mat-option>
+          <mat-option value="Existencias">Existencias</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Rotación (dias)</mat-label>
+        <input type="number" matInput formControlName="rotation">
+      </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+      <span class="spacer"></span>
+      <button mat-raised-button mat-raised-button mat-dialog-close>CANCELAR</button>
+      <button type="submit" mat-raised-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+  </form>
+  

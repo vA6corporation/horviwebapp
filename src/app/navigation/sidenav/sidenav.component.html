@@ -1,0 +1,225 @@
+<mat-action-list>
+    @for (module of modules; track $index) {
+        @if (module.isActive && module.name === 'seaces') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'notifications') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'sureties') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'tenders') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'businesses') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'beneficiaries') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'partnerships') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'financiers') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'users') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'commercials') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'customers') {
+            <button mat-list-item [routerLink]="module.path">
+                <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                <div matListItemTitle>{{ module.label }}</div>
+            </button>
+        }
+        @if (module.isActive && module.name === 'insurances') {
+            <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon matListItemIcon class="m-4 color-black">{{ module.icon }}</mat-icon>
+                    {{ module.label }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.SCTR }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>SCTR</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.SOAT }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>SOAT</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.VIDALEY }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Vida Ley</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.POLIZACAR }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Poliza CAR</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.POLIZATREC }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Poliza TREC</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.POLIZAEAR }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Poliza EAR</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.POLIZAMULTIRRIESGOS }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Poliza Multirriesgos</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.RESCIVIL }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Res. Civil</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.VEHICULAR }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Vehicular</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.VIDA }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Vida</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.EPS }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>EPS</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.SALUD }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Salud</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.ACCIDENTES }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Accidentes P.</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.FOLA }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Fola</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.VIAJES }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>Viajes</div>
+                </button>
+                <button mat-list-item [routerLink]="module.path" [queryParams]="{ insuranceType: insuranceType.EMPRESARIAL }">
+                    <mat-icon matListItemIcon>{{ module.icon }}</mat-icon>
+                    <div matListItemTitle>P. Empresarial</div>
+                </button>
+            </mat-expansion-panel>
+        }
+        @if (module.isActive && module.name === 'templates') {
+            <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon matListItemIcon class="m-4 color-black">text_snippet</mat-icon>
+                    Formatos
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-list-item routerLink="/templates">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <div matListItemTitle>Formatos</div>
+                </button>
+                <button mat-list-item routerLink="/shareholders">
+                    <mat-icon matListItemIcon>group</mat-icon>
+                    <div matListItemTitle>Accionistas</div>
+                </button>
+            </mat-expansion-panel>
+        }
+        @if (module.isActive && module.name === 'reports') {
+            <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon matListItemIcon class="m-4 color-black">equalizer</mat-icon>
+                    Reportes
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-list-item routerLink="/tenders/withoutDocumentation">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <div matListItemTitle>D/F obras</div>
+                </button>
+                <button mat-list-item routerLink="/sureties/withoutDocumentation">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <div matListItemTitle>D/F fianzas</div>
+                </button>
+                <button mat-list-item routerLink="/cheques">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <div matListItemTitle>Garantias</div>
+                </button>
+                <button mat-list-item routerLink="/sureties/summarySureties">
+                    <mat-icon matListItemIcon>equalizer</mat-icon>
+                    <div matListItemTitle>Suma asegurada</div>
+                </button>
+            </mat-expansion-panel>
+        }
+        @if (module.isActive && module.name === 'accounting') {
+            <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon matListItemIcon class="m-4 color-black">local_atm</mat-icon>
+                    Contabilidad
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-list-item routerLink="/payments">
+                    <mat-icon matListItemIcon>local_atm</mat-icon>
+                    <div matListItemTitle>Honorarios</div>
+                </button>
+                <button mat-list-item routerLink="/paymentOrders">
+                    <mat-icon matListItemIcon>local_atm</mat-icon>
+                    <div matListItemTitle>Ordenes de pago</div>
+                </button>
+                <button mat-list-item routerLink="/providers">
+                    <mat-icon matListItemIcon>group</mat-icon>
+                    <div matListItemTitle>Proveedores</div>
+                </button>
+                <button mat-list-item routerLink="/banks">
+                    <mat-icon matListItemIcon>account_balance_wallet</mat-icon>
+                    <div matListItemTitle>Bancos</div>
+                </button>
+            </mat-expansion-panel>
+        }
+    }
+    <mat-divider></mat-divider>
+    @if (user.isAdmin) {
+    <button mat-list-item routerLink="/settings">
+        <mat-icon matListItemIcon>build</mat-icon>
+        <div matListItemTitle>Ajustes</div>
+    </button>
+    }
+    <button mat-list-item routerLink="/logout">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <div matListItemTitle>Cerrar sesion</div>
+    </button>
+</mat-action-list>

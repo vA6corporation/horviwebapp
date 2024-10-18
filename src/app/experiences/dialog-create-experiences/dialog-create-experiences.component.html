@@ -1,0 +1,93 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <h2 mat-dialog-title>Agregar experiencia</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Entidad contratante</mat-label>
+            <input type="text" matInput formControlName="convener">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Descripcion del objeto</mat-label>
+            <input type="text" matInput formControlName="objectDescription">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Objeto de contratacion</mat-label>
+            <mat-select formControlName="objectContract">
+                <mat-option value="Obra">OBRA</mat-option>
+                <mat-option value="Consultoría de Obra">CONSULTORIA DE OBRA</mat-option>
+                <mat-option value="Bien">BIEN</mat-option>
+                <mat-option value="Servicio">SERVICIO</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha firma de Contrato</mat-label>
+            <input matInput [matDatepicker]="signatureAt" formControlName="signaturedAt">
+            <mat-datepicker-toggle matSuffix [for]="signatureAt"></mat-datepicker-toggle>
+            <mat-datepicker #signatureAt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha inicio de obra</mat-label>
+            <input matInput [matDatepicker]="startAt" formControlName="startAt">
+            <mat-datepicker-toggle matSuffix [for]="startAt"></mat-datepicker-toggle>
+            <mat-datepicker #startAt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha fin de obra</mat-label>
+            <input matInput [matDatepicker]="endingDate" formControlName="endAt">
+            <mat-datepicker-toggle matSuffix [for]="endingDate"></mat-datepicker-toggle>
+            <mat-datepicker #endingDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ubicacion geografica de la obra</mat-label>
+            <input type="text" matInput formControlName="location">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input type="number" matInput formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Plazo de la obra en dias</mat-label>
+            <input type="number" matInput formControlName="daysLimit">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Avance a la fecha (Porcentaje)</mat-label>
+            <input type="number" matInput formControlName="advancedPercent">
+        </mat-form-field>
+        <mat-list class="mb-1" formArrayName="experiencePartnerships">
+            @for (experiencePartnership of formArray.controls; track $index; let i = $index) {
+                <h2 class="mat-title-medium">Consorsiado {{ $index + 1 }}</h2>
+                <div [formGroupName]="i">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombres</mat-label>
+                        <input type="text" matInput formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Participacion (%)</mat-label>
+                        <input type="text" matInput formControlName="participationPercent">
+                    </mat-form-field>
+                </div>
+            }
+        </mat-list>
+        <button type="button" mat-flat-button color="primary" class="w-100 mb-3"
+            (click)="onAddExperiencePartnership()">AGREGAR CONSORCIADO</button>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isCompleted">
+                Concluido
+            </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isOperator">
+                Operador
+            </mat-slide-toggle>
+        </div>
+        <!-- <div class="mb-3">
+            <mat-slide-toggle formControlName="isConsortium">
+                Consorcio
+            </mat-slide-toggle>
+        </div> -->
+    </div>
+    <mat-dialog-actions>
+        <span class="spacer"></span>
+        <button mat-raised-button mat-dialog-close>CANCELAR</button>
+        <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

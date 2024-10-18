@@ -1,0 +1,35 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input [type]="hide ? 'password' : 'text'" matInput formControlName="password">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Comercial a cargo</mat-label>
+            <mat-select formControlName="commercialId">
+                <mat-option [value]="null">NINGUNO</mat-option>
+                @for (commercial of commercials; track commercial._id) {
+                    <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button routerLink="/users" color="primary">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

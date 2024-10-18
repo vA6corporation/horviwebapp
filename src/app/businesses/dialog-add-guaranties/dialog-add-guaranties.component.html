@@ -1,0 +1,52 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+  <h2 mat-dialog-title>Agregar fianzas vigentes de cada consorciado</h2>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>N° de Licitación y Objeto del Contrato</mat-label>
+      <input type="text" matInput formControlName="tenderObjectContract">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Avance a la fecha</mat-label>
+      <input type="number" matInput formControlName="advancePercent">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Fiel Cumplimiento (Monto de Fianza Original)*</mat-label>
+      <input type="text" matInput formControlName="faithfulComplianceO">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adelanto Directo (Monto de Fianza Original)*</mat-label>
+      <input type="text" matInput formControlName="directAdvanceO">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adelanto Materiales (Monto de Fianza Original)*</mat-label>
+      <input type="text" matInput formControlName="advanceMaterialsO">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label
+        >Fiel Cumplimiento (Monto de Fianza Vigente a la Fecha)*</mat-label
+      >
+      <input type="text" matInput formControlName="faithfulComplianceV">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label
+        >Adelanto Directo (Monto de Fianza Vigente a la Fecha)*</mat-label
+      >
+      <input type="text" matInput formControlName="directAdvanceV">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label
+        >Adelanto Materiales (Monto de Fianza Vigente a la Fecha)*</mat-label
+      >
+      <input type="text" matInput formControlName="advanceMaterialsV">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de Entidades Afianzadoras</mat-label>
+      <input type="text" matInput formControlName="nameSuretyEntities">
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-raised-button mat-dialog-close>CANCELAR</button>
+    <button type="submit" mat-raised-button color="primary">GUARDAR</button>
+  </mat-dialog-actions>
+</form>

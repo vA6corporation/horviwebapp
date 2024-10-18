@@ -1,0 +1,87 @@
+<div class="container">
+    <form [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Commercial a cargo</mat-label>
+            <mat-select formControlName="commercialId" (selectionChange)="onCommercialChange()">
+                <mat-option value="">TODOS LOS COMERCIALES</mat-option>
+                @for (commercial of commercials; track commercial._id) {
+                <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="emitionAt">
+                <th mat-header-cell *matHeaderCellDef>F. Emision</th>
+                <td mat-cell *matCellDef="let element" class="truncate-cell">{{ element.emitionAt | date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef>Codigo</th>
+                <td mat-cell *matCellDef="let element" class="truncate-cell">{{ element.code }}</td>
+            </ng-container>
+            <ng-container matColumnDef="object">
+                <th mat-header-cell *matHeaderCellDef>Objeto</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize truncate-cell">{{ element.objectDescription }}</td>
+            </ng-container>
+            <ng-container matColumnDef="commercial">
+                <th mat-header-cell *matHeaderCellDef>Comercial</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize truncate-cell">
+                    {{ element.commercial.name | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="business">
+                <th mat-header-cell *matHeaderCellDef>Empresa</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize truncate-cell">
+                    {{ element.business?.name || 'NINGUNO' | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="partnership">
+                <th mat-header-cell *matHeaderCellDef>Consorcio</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize truncate-cell">
+                    {{ element.partnership?.name || 'NINGUNO' }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="observations">
+                <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{ 'text-muted': !element.observations}">{{ element.observations || 'NINGUNO' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element;" class="text-right">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button type="button" (click)="onDialogCreateSureties(element._id)" mat-menu-item>
+                            <mat-icon>add</mat-icon>
+                            <span>Agregar renovacion</span>
+                        </button>
+                        <button type="button" (click)="onDialogSureties(element._id)" mat-menu-item>
+                            <mat-icon>info</mat-icon>
+                            <span>Fianzas</span>
+                        </button>
+                        <a [routerLink]="['/tenders', element._id, 'edit']" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </a>
+                        <!-- <button type="button" (click)="onDelete(element._id)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar</span>
+                        </button> -->
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"
+                [ngClass]="{ 'bg-danger': row.constructionCode === '06' }"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+    <div class="fixed-bottom px-4" style="right: 0; left: unset; width: auto;">
+        <button mat-fab color="primary" class="float-right" routerLink="/tenders/create">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

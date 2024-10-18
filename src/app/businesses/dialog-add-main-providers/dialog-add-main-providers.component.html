@@ -1,0 +1,48 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <h2 mat-dialog-title>Agregar un cliente</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>RUC/DNI</mat-label>
+            <input type="number" matInput formControlName="document">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Razón Social</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Giro del Negocio</mat-label>
+            <input type="text" matInput formControlName="turnBusiness">
+        </mat-form-field>
+        <h2 class="mat-title-medium">Items adquiridos en {{ year - 1 }}</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="itemOne">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input type="number" matInput formControlName="priceOne">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>% del Total Compras</mat-label>
+            <input type="number" matInput formControlName="shoppingOne">
+        </mat-form-field>
+        <h2 class="mat-title-medium">Items adquiridos en {{ year }}</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="itemTwo">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input type="number" matInput formControlName="priceTwo">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>% del Total Compras</mat-label>
+            <input type="number" matInput formControlName="shoppingTwo">
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <span class="spacer"></span>
+        <button mat-raised-button mat-dialog-close>CANCELAR</button>
+        <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

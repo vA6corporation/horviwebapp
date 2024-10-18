@@ -1,0 +1,103 @@
+<div class="container">
+    <form [formGroup]="formGroup" autocomplete="off">
+        <div class="d-flex">
+            <mat-form-field appearance="fill">
+                <mat-label>Promotor</mat-label>
+                <mat-select formControlName="commercialId" (selectionChange)="fetchData()">
+                    <mat-option value="">TODOS LOS PROMOTORES</mat-option>
+                    @for (commercial of commercials; track $index) {
+                    <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Seleccione un rango de fechas</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Desde" formControlName="startDate">
+                    <input matEndDate placeholder="Hasta" formControlName="endDate" (dateChange)="fetchData()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field> -->
+        </div>
+    </form>
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="policyNumber">
+                <th mat-header-cell *matHeaderCellDef>N° de poliza</th>
+                <td mat-cell *matCellDef="let element">{{ element.policyNumber }}</td>
+            </ng-container>
+            <ng-container matColumnDef="emitionAt">
+                <th mat-header-cell *matHeaderCellDef>Fecha de emision</th>
+                <td mat-cell *matCellDef="let element">{{ element.emitionAt | date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="expirationAt">
+                <th mat-header-cell *matHeaderCellDef>Fecha de vencimiento</th>
+                <td mat-cell *matCellDef="let element">{{ element.expirationAt | date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="customer">
+                <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                <td mat-cell *matCellDef="let element" class="truncate-cell">{{ element.customer.name | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="financier">
+                <th mat-header-cell *matHeaderCellDef>Financiera</th>
+                <td mat-cell *matCellDef="let element" class="truncate-cell">{{ element.financier.name | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="prima">
+                <th mat-header-cell *matHeaderCellDef>Prima</th>
+                <td mat-cell *matCellDef="let element">{{ element.prima.toFixed(2) }}</td>
+            </ng-container>
+            <ng-container matColumnDef="observations">
+                <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{ 'text-muted': !element.observations }">
+                    {{ element.observations || 'NINGUNO' }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell class="text-right" *matCellDef="let element">
+                    @if (element.isEmition) {
+                        <button type="button" mat-icon-button>
+                            <mat-icon>looks_one</mat-icon>
+                        </button>
+                    }
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button [routerLink]="['/insurances', element._id, 'edit']"
+                            [queryParams]="{ insuranceType }" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button routerLink="/insurances/create" [queryParams]="{ insuranceType, insuranceGroupId: element.insuranceGroupId}"
+                            mat-menu-item>
+                            <mat-icon>autorenew</mat-icon>
+                            <span>Renovar</span>
+                        </button>
+                        <button type="button" (click)="onDelete(element._id)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                [ngClass]="{ 'bg-success': row.status === '02', 'bg-warning': row.status === '03', 'bg-danger': row.status === '04' }">
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+    <div class="fixed-bottom px-4" style="right: 0; left: unset; width: auto;">
+        <button mat-fab color="primary" class="float-right" routerLink="/insurances/create"
+            [queryParams]="{ insuranceType }">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

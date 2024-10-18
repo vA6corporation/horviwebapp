@@ -1,0 +1,484 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-accordion>
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Datos de la empresa</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-slide-toggle class="mb-3" formControlName="isJustPartnership">
+                    Solo es un consorciado
+                </mat-slide-toggle>
+                <mat-form-field appearance="fill">
+                    <mat-label>Observaciones</mat-label>
+                    <input type="text" matInput formControlName="observations">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Comercial a cargo</mat-label>
+                    <mat-select formControlName="commercialId">
+                        @for (commercial of commercials; track commercial._id) {
+                        <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>N° de RUC</mat-label>
+                    <input type="text" matInput formControlName="document" maxlength="11">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Razon social</mat-label>
+                    <input type="text" matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput formControlName="email" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Celular</mat-label>
+                    <input type="text" matInput formControlName="mobileNumber">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Telefono</mat-label>
+                    <input type="text" matInput formControlName="phoneNumber" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Anexo</mat-label>
+                    <input type="text" matInput formControlName="annexed">
+                </mat-form-field>
+
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Origen</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Pais de Origen</mat-label>
+                    <input type="text" matInput formControlName="countryOrigin" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Distrito de Origen</mat-label>
+                    <input type="text" matInput formControlName="districtOrigin" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia de Origen</mat-label>
+                    <input type="text" matInput formControlName="provinceOrigin" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Departamento de Origen</mat-label>
+                    <input type="text" matInput formControlName="departmentOrigin" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Direccion de Origen</mat-label>
+                    <input type="text" matInput formControlName="addressOrigin" autocomplete="nope">
+                </mat-form-field>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Residencia</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Pais de Residencia</mat-label>
+                    <input type="text" matInput formControlName="countryRecidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Distrito de Residencia (en caso la empresa sea extranjera)</mat-label>
+                    <input type="text" matInput formControlName="districtRecidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia de Residencia (en caso la empresa sea extranjera)</mat-label>
+                    <input type="text" matInput formControlName="provinceRecidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Departamento de Residencia (en caso la empresa sea extranjera)</mat-label>
+                    <input type="text" matInput formControlName="departmentRecidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Direccion de Residencia (en caso la empresa sea extranjera)</mat-label>
+                    <input type="text" matInput formControlName="addressRecidence" autocomplete="nope">
+                </mat-form-field>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Sobre el negocio</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de registro mercantil</mat-label>
+                    <input matInput [matDatepicker]="inscriptionAt" formControlName="inscriptionAt">
+                    <mat-datepicker-toggle matSuffix [for]="inscriptionAt"></mat-datepicker-toggle>
+                    <mat-datepicker #inscriptionAt></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Giro del Negocio</mat-label>
+                    <input type="text" matInput formControlName="turnOfBusiness">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Fuentes de ingreso</mat-label>
+                    <input type="text" matInput formControlName="sourcesOfIncome">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Pais de origen de los fondos</mat-label>
+                    <input type="text" matInput formControlName="countrySource" autocomplete="nope">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Autorizo expresa e irrevocablemente a ustedes a utilizar el monto de</mat-label>
+                    <input type="number" matInput formControlName="amountUse">
+                </mat-form-field>
+
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="UIF">
+                        Ley que crea a la Unidad de Inteligencia Financiera – UIF
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="hasComplianceOfficer">
+                        ¿Cuenta con Oficial de Cumplimiento?
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="managementManualLAFT">
+                        ¿Cuenta con Manual de Prevención y Gestión de LAFT?
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="codeEthicsConduct">
+                        ¿Cuenta con Código de Etica o Conducta?
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="carryReviewClients">
+                        ¿Lleva a cabo una revisión de sus Clientes,
+                        Proveedores y Contrapartes para verificar si están
+                        incluidos en Listas Internacionales de personas
+                        vinculas a actividades de LAFT? (OFAC, CSNU, UE)
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="madeMakeInvestments">
+                        ¿Ha realizado o tiene pensado realizar inversiones en
+                        paises que presentan baja regulación frente a delitos de LAFT?
+                        (Ejemplo: Irán, North Corea, Siria)
+                    </mat-slide-toggle>
+                </div>
+                <div class="mb-3">
+                    <mat-slide-toggle formControlName="companyEverBeenInvestigated">
+                        ¿Su empresa ha sido alguna vez investigada, procesada o sancionada por
+                        incumplimiento de las regulaciones sobre Prevención de LAFT?
+                    </mat-slide-toggle>
+                </div>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Inscripcion en el OSCE</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>N° de Registro</mat-label>
+                    <input type="text" matInput formControlName="osceRegister" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Capacidad de Contratación</mat-label>
+                    <input type="text" matInput formControlName="osceHiring" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Año de Caducidad</mat-label>
+                    <input type="text" matInput formControlName="osceExpiration" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha Certificada</mat-label>
+                    <input matInput [matDatepicker]="osceCertifiedDate" formControlName="osceCertifiedDate">
+                    <mat-datepicker-toggle matSuffix [for]="osceCertifiedDate"></mat-datepicker-toggle>
+                    <mat-datepicker #osceCertifiedDate></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>
+                        ¿La empresa ha sido objeto de sanciones por parte del OSCE alguna vez? De ser asi,
+                        indicar el motivo, fecha, y lugar de la sanción
+                    </mat-label>
+                    <input type="text" matInput formControlName="osceObservation" autocomplete="nope">
+                </mat-form-field>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Representante legal</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="representativeGender">
+                        <mat-option value="MASCULINO">MASCULINO</mat-option>
+                        <mat-option value="FEMENINO">FEMENINO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de documento</mat-label>
+                    <mat-select formControlName="representativeDocumentType">
+                        <mat-option value="DNI">DNI</mat-option>
+                        <mat-option value="CE">CE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>N° de documento</mat-label>
+                    <input type="text" matInput formControlName="representativeDocument">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombres</mat-label>
+                    <input type="text" matInput formControlName="representativeName">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nacionalidad</mat-label>
+                    <input type="text" matInput formControlName="representativeNationality">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Estado civil</mat-label>
+                    <mat-select formControlName="representativeMaritalStatus">
+                        <mat-option value="SOLTERO">SOLTERO</mat-option>
+                        <mat-option value="CASADO">CASADO</mat-option>
+                        <mat-option value="DIVORCIADO">DIVORCIADO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="birthDatePicker" formControlName="representativeBirthDate">
+                    <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #birthDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Estudios</mat-label>
+                    <mat-select formControlName="representativeStudies">
+                        <mat-option value="PRIMARIA">PRIMARIA</mat-option>
+                        <mat-option value="SECUNDARIA">SECUNDARIA</mat-option>
+                        <mat-option value="TECNICO">TECNICO</mat-option>
+                        <mat-option value="UNIVERSITARIA">UNIVERSITARIA</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="representativeEmail" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Celular</mat-label>
+                    <input type="text" matInput formControlName="representativeMobileNumber">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Telefono</mat-label>
+                    <input type="text" matInput formControlName="representativePhoneNumber" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Pais de origen</mat-label>
+                    <input type="text" matInput formControlName="representativeCountryOrigin" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Pais de Residencia</mat-label>
+                    <input type="text" matInput formControlName="representativeCountryResidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Distrito de Residencia</mat-label>
+                    <input type="text" matInput formControlName="representativeDistrictResidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia de Residencia</mat-label>
+                    <input type="text" matInput formControlName="representativeProvinceResidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Departamento de Residencia</mat-label>
+                    <input type="text" matInput formControlName="representativeDepartmentResidence">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Direccion de Residencia</mat-label>
+                    <input type="text" matInput formControlName="representativeAddressResidence" autocomplete="nope">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de vivienda</mat-label>
+                    <mat-select formControlName="representativeLivingType">
+                        <mat-option value="PROPIA">PROPIA</mat-option>
+                        <mat-option value="ALQUILADA">ALQUILADA</mat-option>
+                        <mat-option value="OTRO">OTRO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                @if (formGroup.get('representativeLivingType')?.value === 'PROPIA') {
+                <mat-form-field appearance="fill">
+                    <mat-label>Totalmente pagada?</mat-label>
+                    <mat-select formControlName="representativeLivingTypeIsPay">
+                        <mat-option value="SI">SI</mat-option>
+                        <mat-option value="NO">NO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                }
+                @if (formGroup.get('representativeLivingType')?.value === 'ALQUILADA') {
+                <mat-form-field appearance="fill">
+                    <mat-label>Precio del alquiler</mat-label>
+                    <input type="number" matInput formControlName="representativeLivingTypePrice">
+                </mat-form-field>
+                }
+                <mat-form-field appearance="fill">
+                    <mat-label>Profesion/Ocupacion</mat-label>
+                    <input type="text" matInput formControlName="representativeProfessionOccupation">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Cargo</mat-label>
+                    <input type="text" matInput formControlName="representativePosition">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Años de servicio</mat-label>
+                    <input type="number" matInput formControlName="representativeYearsOfService">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sueldo</mat-label>
+                    <input type="number" matInput formControlName="representativeSalary">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Regimen de bienes</mat-label>
+                    <mat-select formControlName="representativePropertyRegime">
+                        <mat-option value="">NINGUNO</mat-option>
+                        <mat-option value="SOCIEDAD">SOCIEDAD</mat-option>
+                        <mat-option value="COLECTIVIDAD">COLECTIVIDAD</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Institución (Si es PEP)</mat-label>
+                    <input type="text" matInput formControlName="representativePEPInstitution">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Cargo (Si es PEP)</mat-label>
+                    <input type="text" matInput formControlName="representativePEPPositionn">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Estado (Si esta sentenciado/investigado)</mat-label>
+                    <mat-select formControlName="representativeCrimeStatus">
+                        <mat-option value="SENTENCIADO">SENTENCIADO</mat-option>
+                        <mat-option value="INVESTIGADO">INVESTIGADO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Delito (Si esta sentenciado/investigado)</mat-label>
+                    <input type="text" matInput formControlName="representativeCrime">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Año (Si esta sentenciado/investigado)</mat-label>
+                    <input matInput [matDatepicker]="representativeCrimeYear" formControlName="representativeCrimeYear">
+                    <mat-datepicker-toggle matSuffix [for]="representativeCrimeYear"></mat-datepicker-toggle>
+                    <mat-datepicker #representativeCrimeYear></mat-datepicker>
+                </mat-form-field>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Conyuge del representante legal</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="representativeSpouseGender">
+                        <mat-option value="MASCULINO">MASCULINO</mat-option>
+                        <mat-option value="FEMENINO">FEMENINO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de documento</mat-label>
+                    <mat-select formControlName="representativeSpouseDocumentType">
+                        <mat-option value="DNI">DNI</mat-option>
+                        <mat-option value="CE">CE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>N° de documento</mat-label>
+                    <input type="text" matInput formControlName="representativeSpouseDocument" maxlength="11">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombres</mat-label>
+                    <input type="text" matInput formControlName="representativeSpouseName">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nacionalidad</mat-label>
+                    <input type="text" matInput formControlName="representativeSpouseNationality">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Estado civil</mat-label>
+                    <mat-select formControlName="representativeSpouseMaritalStatus">
+                        <mat-option value="SOLTERO">SOLTERO</mat-option>
+                        <mat-option value="CASADO">CASADO</mat-option>
+                        <mat-option value="DIVORCIADO">DIVORCIADO</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="representativeSpouseBirthDatePicker"
+                        formControlName="representativeSpouseBirthDate">
+                    <mat-datepicker-toggle matSuffix
+                        [for]="representativeSpouseBirthDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #representativeSpouseBirthDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Profesión/Ocupación</mat-label>
+                    <input type="text" matInput formControlName="representativeSpouseProfessionOccupation">
+                </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="mb-3"></div>
+        <mat-list class="mb-3">
+            <h2 class="mat-title-medium">Accionistas</h2>
+            <mat-list-item *ngFor="let shareholder of shareholders; let i = index">
+                <span matListItemTitle>{{ shareholder.name | uppercase }}</span>
+                <span>{{ shareholder.documentType }}: {{ shareholder.document }}</span>
+                <div matListItemMeta class="py-3">
+                    <button type="button" mat-icon-button (click)="onRemoveShareholder(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <button type="button" mat-flat-button color="primary" class="w-100 mb-3" [disabled]="isLoading"
+            (click)="onDialogShareholders()">
+            AGREGAR ACCIONISTA
+        </button>
+
+        <div class="pb-3"></div>
+        <mat-list role="list">
+            <h2 class="mat-title-medium">Experiencias</h2>
+            @for (experience of experiences; track $index; let i = $index) {
+            <mat-list-item role="listitem">
+                <span matListItemTitle>{{ experience.objectDescription }}</span>
+                <span>{{ experience.convener }}</span>
+                <div matListItemMeta>
+                    <button type="button" (click)="onDeleteExperience(i)" mat-icon-button aria-label="edit button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button type="button" (click)="onDialogEditExperiences(experience, i)" mat-icon-button aria-label="edit button">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+            }
+        </mat-list>
+        <button type="button" mat-flat-button color="primary" class="w-100" [disabled]="isLoading"
+            (click)="onDialogCreateExperiences()">
+            AGREGAR EXPERIENCIA
+        </button>
+
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <div class="py-3">
+                <button type="button" [disabled]="isLoading" mat-raised-button routerLink="/businesses"
+                    color="primary">CANCELAR</button>
+                <span class="divider"></span>
+                <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,48 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <h2 mat-dialog-title>Agregar garantia</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de fianza</mat-label>
+            <mat-select formControlName="guaranteeType">
+                <mat-option value="GAOS">SERIEDAD EN LA OFERTA</mat-option>
+                <mat-option value="GAMF">ADELANTO DE MATERIALES</mat-option>
+                <mat-option value="GADF">ADELANTO DIRECTO</mat-option>
+                <mat-option value="GFCF">FIEL CUMPLIMIENTO</mat-option>
+                <mat-option value="GFWE">GARANTIA DE BUENA EJECUCIÓN DE OBRA</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Vigencia desde</mat-label>
+            <input matInput [matDatepicker]="startAt" formControlName="startAt">
+            <mat-datepicker-toggle matSuffix [for]="startAt"></mat-datepicker-toggle>
+            <mat-datepicker #startAt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Vigencia hasta</mat-label>
+            <input matInput [matDatepicker]="endAt" formControlName="endAt">
+            <mat-datepicker-toggle matSuffix [for]="endAt"></mat-datepicker-toggle>
+            <mat-datepicker #endAt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Plazo de la fianza (en dias)</mat-label>
+            <input type="number" matInput formControlName="daysLimit">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Monto de la fianza</mat-label>
+            <input type="number" matInput formControlName="amount">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currencyCode">
+                <mat-option value="PEN">PEN</mat-option>
+                <mat-option value="USD">USD</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <span class="spacer"></span>
+        <button type="button" mat-raised-button mat-dialog-close>CANCELAR</button>
+        <div class="divider"></div>
+        <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

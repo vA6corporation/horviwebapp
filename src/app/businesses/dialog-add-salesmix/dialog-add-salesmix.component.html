@@ -1,0 +1,32 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+  <h2 mat-dialog-title>Agregar mix de ventas</h2>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Actividad</mat-label>
+      <input type="text" matInput formControlName="activity">
+    </mat-form-field>
+    <h2>{{ year - 1 }}</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Monto</mat-label>
+      <input type="number" matInput formControlName="amountOne">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>%</mat-label>
+      <input type="number" matInput formControlName="percentageOne">
+    </mat-form-field>
+    <h2>{{ year }}</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Monto</mat-label>
+      <input type="number" matInput formControlName="amountTwo">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>%</mat-label>
+      <input type="number" matInput formControlName="percentageTwo">
+    </mat-form-field>
+    <mat-dialog-actions>
+      <span class="spacer"></span>
+      <button mat-raised-button mat-raised-button mat-dialog-close>CANCELAR</button>
+      <button type="submit" mat-raised-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+  </div>
+</form>

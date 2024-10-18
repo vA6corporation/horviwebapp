@@ -1,0 +1,11 @@
+runtime: nodejs20
+
+handlers:
+- url: /(.*\..+)$ 
+  static_files: dist/horviwebapp/browser/\1
+  upload: dist/horviwebapp/browser/(.*\..+)$
+
+- url: /.*
+  secure: always
+  static_files: dist/horviwebapp/browser/index.html
+  upload: dist/horviwebapp/browser/index.html

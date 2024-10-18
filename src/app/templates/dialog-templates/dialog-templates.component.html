@@ -1,0 +1,260 @@
+<h2 mat-dialog-title>Formatos</h2>
+<div mat-dialog-content>
+    <h2 class="mat-title-medium">SECREX</h2>
+    <a [href]="[ baseUrl + 'templatesSecrex/basicConfidentialInformation/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        INFORMACION CONFIDENCIAL BASICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/basicConfidentialInformationBusiness/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        INFORMACIÓN CONSOLIDADA EMPRESA CONSORCIADA
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/suretyInsuranceSolution/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE SEGURO DE CAUCION
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/affidavidOfAssets/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3" download>
+        DECLARACION JURADA DE BIENES
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/affidavitOfOriginOfFunds/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACION JURADA DE ORIGEN DE FONDOS
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/specificExperienceOfEachConsorciate/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        RELACION DE OBRAS EN EJECUCION A LA FECHA
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/patrimonialRelationshipOfNaturalPerson/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        RELACION PATRIMONIAL DE PERSONA NATURAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesSecrex/specificExperienceOfEachConsorciateCompleted/' + template._id ]"
+        mat-flat-button color="primary" class="w-100 mb-3">
+        EXPERIENCIA ESPECIFICA DE CADA CONSORCIADO EN OBRAS
+    </a>
+
+    @if (template.partnershipId) {
+    <a [href]="[ baseUrl + 'templatesSecrex/consortiunConsolidatedInformation/' + template._id ]"
+        mat-flat-button color="primary" class="w-100 mb-3">
+        INFORMACION CONSOLIDADA CONSORCIO
+    </a>
+    } @else {
+    <a href="#" mat-flat-button disabled color="primary" class="w-100 mb-3">
+        INFORMACION CONSOLIDADA CONSORCIO
+    </a>
+    }
+
+    <h2 class="mat-title-medium">CRECER</h2>
+    <a [href]="[ baseUrl + 'templatesCrecer/basicInformation/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        INFORMACIÓN BASICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/swornDeclarationOfOriginOfFunds/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        DECLARACION JURADA DE ORIGEN DE FONDOS PERSONA JURIDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/swornAssetsDeclaration/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACIÓN JURADA PATRIMONIAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/dueDiligenceFormTwo/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FORMULARIO DE DEBIDA DILIGENCIA
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/experienceOfEachConsortiateInWorks/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        EXPERIENCIA DE CADA CONSORCIADO EN OBRAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/tableOfCurrentDepositsOfEachConsortiate/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        CUADRO DE FIANZAS VIGENTES DE CADA CONSORCIADO
+    </a>
+    <a [href]="[ baseUrl + 'templatesCrecer/issueRequest/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE EMISIÓN
+    </a>
+
+    <h2 class="mat-title-medium">MAPFRE</h2>
+    <a [href]="[ baseUrl + 'templatesMapfre/letterInstructions/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CARTA DE INSTRUCCIONES PERSONA JURIDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/addendumGeneralConditions/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        ADDENDUM A LAS CONDICIONES GENERALES
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/swornStatementObligedSubjects/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        DECLARACIÓN JURADA DE SUJETOS OBLIGADOS
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/willPay/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        PAGARE
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/suretyFinanceUnit/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        UNIDAD DE CAUCIONES Y FIANZAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/warrantyRequest/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE GARANTÍAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/legalEntityClientFile/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA CLIENTE PERSONA JURÍDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/legalClientProfile/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        PERFIL DEL CLIENTE - PERSONA JURIDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesMapfre/backlogWorks/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        BACKLOG DE OBRAS/SERVICIOS
+    </a>
+
+
+    <h2 class="mat-title-medium">INSUR</h2>
+    <a [href]="[ baseUrl + 'templatesInsur/swornDeclaration/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACION JURADA
+    </a>
+    <a [href]="[ baseUrl + 'templatesInsur/statePatrimonialSituation/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        ESTADO DE SITUACION PATRIMONIAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesInsur/customerCardPjGuarantee/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA CLIENTE PERSONA JURÍDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesInsur/suretyInsurance/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD SEGURO DE CAUCIÓN</a>
+    <a [href]="[ baseUrl + 'templatesInsur/tableOfCautions/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CAUCIONES Y/O FIANZAS VIGENTES EN EL SISTEMA FINANCIERO
+    </a>
+    <a [href]="[ baseUrl + 'templatesInsur/similarServiceSupply/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        EXPERIENCIA ESPECÍFICA DE LA EMPRESA EN CONTRATOS DE OBRA
+    </a>
+
+    <!-- <h2>AVLA</h2>
+    <a [href]="[ baseUrl + 'templatesAvla/issuanceRequest/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE EMISIÓN OBRAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/basciConsortiumSheet/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA BÁSICA DE CONSORCIO
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/basicCustomerCardLegalEntity/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        FICHA BÁSICA CLIENTE PERSONA JURÍDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/basicCustomerCardNaturalPerson/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        FICHA BÁSICA CLIENTE PERSONA NATURAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/declarationExperienceWorks/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        DECLARACIÓN DE EXPERIENCIA EN OBRAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/individualPatrimonialSworn/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        DECLARACIÓN JURADA PATRIMONIAL INDIVIDUAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesAvla/corporateAssetsSworn/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACIÓN JURADA PATRIMONIAL CORPORATIVA
+    </a>
+
+
+    <h2>LA POSITIVA</h2>
+    <a [href]="[ baseUrl + 'templatesPositiva/tableOfWorksExecuted/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CUADRO DE OBRAS EJECUTADAS Y/O EN PROCESO
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/swornDeclaration/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACIÓN JURADA
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/patrimonialDeclarationGoods/' + template._id ]" mat-flat-button
+        color="primary" class="w-100 mb-3">
+        DECLARACIÓN PATRIMONIAL DE BIENES
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/antiCorruption/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CERTIFICACIÓN ANTICORRUPCIÓN DE PARTE DE LOS CLIENTES
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/commercialFile/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA COMERCIAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/letterAppointment/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CARTA DE NOMBRAMIENTO
+    </a>
+    <a [href]="[ baseUrl + 'templatesPositiva/bailLetterRequest/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE CARTA FIANZA
+    </a>
+
+
+    <h2>FOGAPI</h2>
+    <a [href]="[ baseUrl + 'templatesFogapi/applicationForm/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA DE SOLICITUD
+    </a>
+    <a [href]="[ baseUrl + 'templatesFogapi/businessReport/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        INFORME COMERCIAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesFogapi/swornStatement/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACIÓN JURADA DE BIENES Y RENTAS
+    </a>
+    <a [href]="[ baseUrl + 'templatesFogapi/experienceFormInWorks/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FORMATO DE EXPERIENCIA EN OBRAS, SERVICIOS O SUMINISTROS
+    </a>
+    <a [href]="[ baseUrl + 'templatesFogapi/professionalCvFormat/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FORMATO DE HOJA DE VIDA PROFESIONAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesFogapi/projectedCashFlow/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FLUJO DE CAJA PROYECTADO
+    </a>
+
+
+    <h2>LIBERTY</h2>
+    <a [href]="[ baseUrl + 'templatesLiberty/issuanceRequest/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        SOLICITUD DE EMISIÓN
+    </a>
+    <a [href]="[ baseUrl + 'templatesLiberty/swornDeclaration/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACIÓN JURADA
+    </a>
+    <a [href]="[ baseUrl + 'templatesLiberty/equityDeclarationn/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACION PATRIMONIAL DE BIENES P.NATURAL
+    </a>
+    <a [href]="[ baseUrl + 'templatesLiberty/equityDeclarationj/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        DECLARACION PATRIMONIAL DE BIENES P.JURIDICA
+    </a>
+    <a [href]="[ baseUrl + 'templatesLiberty/antiCorruption/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        CERTIFICACIÓN ANTICORRUPCIÓN
+    </a>
+    <a [href]="[ baseUrl + 'templatesLiberty/commercialFile/' + template._id ]" mat-flat-button color="primary"
+        class="w-100 mb-3">
+        FICHA COMERCIAL
+    </a> -->
+</div>
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-dialog-close>CANCELAR</button>
+</mat-dialog-actions>

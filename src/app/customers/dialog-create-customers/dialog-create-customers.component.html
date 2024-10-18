@@ -1,0 +1,42 @@
+<h2>Nuevo cliente</h2>
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <mat-form-field appearance="fill">
+        <mat-label>RUC</mat-label>
+        <input type="email" matInput formControlName="ruc">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Razon social</mat-label>
+        <input type="text" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Consorcio</mat-label>
+        <input type="text" matInput formControlName="partnershipName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Celular</mat-label>
+        <input type="text" matInput formControlName="mobileNumber">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Direccion</mat-label>
+        <input type="text" matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Comercial a cargo</mat-label>
+        <mat-select formControlName="commercialId">
+            @for (commercial of commercials; track commercial._id) {
+                <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <div class="mb-1"></div>
+    <div class="d-flex">
+        <span class="spacer"></span>
+        <button type="button" mat-stroked-button color="primary" mat-dialog-close>CANCELAR</button>
+        <div class="divider"></div>
+        <button type="submit" [disabled]="isLoading" mat-raised-button color="primary">GUARDAR</button>
+    </div>
+</form>

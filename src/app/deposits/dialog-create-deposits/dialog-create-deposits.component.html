@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    @if (deposit) {
+        <h2 mat-dialog-title>Editar deposito</h2>
+    } @else {
+        <h2 mat-dialog-title>Agregar deposito</h2>
+    }
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Suma asegurada</mat-label>
+            <input type="number" matInput formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currencyCode">
+                <mat-option value="PEN">PEN</mat-option>
+                <mat-option value="USD">USD</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="spacer"></div>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>CANCELAR</button>
+        <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

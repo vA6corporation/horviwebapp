@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+  <h2 mat-dialog-title>Agregar un acceso al credito</h2>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Entidad Financiera / Aseguradora</mat-label>
+      <input type="text" matInput formControlName="insuranceCarrier">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Productos Financieros (Pagaré, Carta Fianza, Leasing, Etc)</mat-label>
+      <input type="text" matInput formControlName="financialProducts">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Línea de crédito / Operación puntual</mat-label>
+      <input type="number" matInput formControlName="creditLine">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Monto</mat-label>
+      <input type="number" matInput formControlName="amount">
+    </mat-form-field>
+    <h3>Garantias</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <input type="text" matInput formControlName="typeGuarantee">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Monto(S/.)*</mat-label>
+      <input type="number" matInput formControlName="amountGuarantee">
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-raised-button mat-dialog-close>CANCELAR</button>
+    <button type="submit" mat-raised-button color="primary">GUARDAR</button>
+  </mat-dialog-actions>
+</form>

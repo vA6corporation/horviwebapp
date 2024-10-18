@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Seleccione una financiera</h2>
+<div mat-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field>
+            <mat-label>Busqueda</mat-label>
+            <input type="text" matInput formControlName="key">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <mat-selection-list [multiple]="false">
+        @for (financier of financiers; track financier._id) {
+            <mat-list-option [mat-dialog-close]="financier">
+                {{ financier.name | uppercase }}
+            </mat-list-option>
+        }
+    </mat-selection-list>
+</div>
+<div class="spacer"></div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>CANCELAR</button>
+</mat-dialog-actions>

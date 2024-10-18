@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="paymentAt">
+                <th mat-header-cell *matHeaderCellDef>F. de pago</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize">{{ element.paymentAt | date: 'dd/MM/yyyy'
+                    }}</td>
+            </ng-container>
+            <ng-container matColumnDef="bank">
+                <th mat-header-cell *matHeaderCellDef>Banco</th>
+                <td mat-cell *matCellDef="let element">{{ element.bank.bankName }}</td>
+            </ng-container>
+            <ng-container matColumnDef="company">
+                <th mat-header-cell *matHeaderCellDef>Razon social</th>
+                <td mat-cell *matCellDef="let element">{{ element.company.name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="charge">
+                <th mat-header-cell *matHeaderCellDef>Monto</th>
+                <td mat-cell *matCellDef="let element">{{ element.charge.toFixed(2) }}</td>
+            </ng-container>
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>Origen</th>
+                <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <a [routerLink]="['/constructions', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Construction'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                        <a [routerLink]="['/compliances', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Compliance'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                        <a [routerLink]="['/materials', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Material'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                        <a [routerLink]="['/directs', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Direct'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                        <a [routerLink]="['/insurances', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Insurance'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                        <a [routerLink]="['/credits', element.parentId, 'edit']" target="_blank"
+                            *ngIf="element.onModel === 'Credit'" mat-menu-item>
+                            <mat-icon>link</mat-icon>
+                            <span>Detalles</span>
+                        </a>
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

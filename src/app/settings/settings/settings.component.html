@@ -1,0 +1,21 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-accordion>
+            <mat-expansion-panel routerLink="/tools">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Herramientas
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <div class="py-3">
+                <button type="button" mat-raised-button routerLink="/products" color="primary">CANCELAR</button>
+                <span class="divider"></span>
+                <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+            </div>
+        </div>
+    </form>
+</div>

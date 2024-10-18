@@ -1,0 +1,22 @@
+<div class="fixActionRow">
+    <h2 mat-dialog-title>Seleccione una obra</h2>
+    <div mat-dialog-content>
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+            <mat-form-field>
+                <mat-label>Busqueda</mat-label>
+                <input type="text" matInput formControlName="key">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+        <mat-selection-list [multiple]="false">
+            @for (tender of tenders; track tender._id) {
+                <mat-list-option [mat-dialog-close]="tender">
+                    {{ tender.objectDescription | uppercase }}
+                </mat-list-option>
+            }
+        </mat-selection-list>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>CANCELAR</button>
+    </mat-dialog-actions>
+</div>

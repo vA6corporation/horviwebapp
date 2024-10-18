@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Seleccione un empresa</h2>
+<div mat-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field>
+            <mat-label>Busqueda</mat-label>
+            <input type="text" matInput formControlName="key">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <mat-selection-list [multiple]="false">
+        @for (business of businesses; track business._id) {
+            <mat-list-option [mat-dialog-close]="business">
+                <span matListItemTitle>{{ business.name | uppercase }}</span>
+                <span>RUC: {{ business.document }}</span>
+            </mat-list-option>
+        }
+    </mat-selection-list>
+</div>
+<div class="spacer"></div>
+<mat-dialog-actions>
+    <a href="/businesses/create" target="_blank" mat-flat-button color="primary">
+        NUEVA EMPRESA
+    </a>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-dialog-close color="primary">CANCELAR</button>
+</mat-dialog-actions>

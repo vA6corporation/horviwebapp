@@ -1,0 +1,85 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>N° de RUC</mat-label>
+            <input type="text" matInput formControlName="document" maxlength="11">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Razon Social</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de constitución</mat-label>
+            <input matInput [matDatepicker]="datePicker" formControlName="constitutedAt">
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input type="text" matInput formControlName="phoneNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Direccion</mat-label>
+            <input type="text" matInput formControlName="address">
+        </mat-form-field>
+        <h2 class="mat-title-medium">Representante legal</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="representativeDocumentType">
+                <mat-option value="document">RUC</mat-option>
+                <mat-option value="DNI">DNI</mat-option>
+                <mat-option value="CE">CE</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Documento</mat-label>
+            <input type="text" matInput formControlName="representativeDocument">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres</mat-label>
+            <input type="text" matInput formControlName="representativeName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nacionalidad</mat-label>
+            <input type="text" matInput formControlName="representativeNationality">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Operador tributario</mat-label>
+            <mat-select formControlName="businessId">
+                <mat-option>SIN OPERADOR TRIBUTARIO</mat-option>
+                @for (partnershipItem of partnershipItems; track $index) {
+                <mat-option class="text-uppercase" [value]="partnershipItem.businessId">
+                    {{ partnershipItem.business.name }}
+                </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-list class="mb-1">
+            <h2 class="mat-title-medium">Empresas</h2>
+            @for (partnershipItem of partnershipItems; track $index; let i = $index) {
+            <mat-list-item>
+                <span matListItemTitle>{{ partnershipItem.business.name | uppercase }} <b>({{ partnershipItem.percent
+                        }}%)</b></span>
+                <span matListItemLine>RUC: {{ partnershipItem.business.document }}</span>
+                <div matListItemMeta class="py-3">
+                    <button type="button" mat-icon-button (click)="onRemovePartnershipItem(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+            }
+            <button type="button" mat-flat-button color="primary" class="w-100 mb-3" [disabled]="isLoading"
+                (click)="onDialogSearchBusinesses()">AGREGAR EMPRESA</button>
+        </mat-list>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button routerLink="/partnerships" color="primary">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

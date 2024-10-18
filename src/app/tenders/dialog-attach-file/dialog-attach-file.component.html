@@ -1,0 +1,26 @@
+<div mat-dialog-content>
+    <mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex = $event">
+        <mat-tab label="Documentos">
+            <mat-action-list>
+                @for (tenderNode of tenderNodes; track tenderNode._id) {
+                <button mat-list-item (click)="onSelectNode(tenderNode)">
+                    {{ tenderNode.name }}
+                </button>
+                }
+            </mat-action-list>
+        </mat-tab>
+        <mat-tab label="Preview">
+            <iframe [src]="url" frameborder="0"></iframe>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<mat-dialog-actions>
+    @if (this.tenderNodeId) {
+        <button type="button" mat-flat-button (click)="onDeleteFile()" color="warn">ELIMINAR</button>
+    }
+    <span class="spacer"></span>
+    <button type="button" mat-raised-button mat-dialog-close color="primary">VOLVER</button>
+    <button type="button" mat-flat-button color="primary" (click)="fileInput.click()">ADJUNTAR</button>
+    <input type="file" #fileInput (change)="onFileSelected(fileInput.files, fileInput)" [accept]="accept" hidden
+        multiple>
+</mat-dialog-actions>

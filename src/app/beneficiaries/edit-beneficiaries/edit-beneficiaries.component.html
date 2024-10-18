@@ -1,0 +1,54 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field apperance="fill">
+            <mat-label>N° de RUC</mat-label>
+            <input type="text" matInput formControlName="document" [maxlength]="maxlength">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Razon Social</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input type="text" matInput maxlength="12" formControlName="mobileNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input type="text" matInput maxlength="12" formControlName="phoneNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Anexo</mat-label>
+            <input type="text" matInput formControlName="annexed">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Direccion</mat-label>
+            <input type="text" matInput formControlName="address">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Representante legal</mat-label>
+            <input type="text" matInput formControlName="legalRepresentative">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo del representante legal</mat-label>
+            <input type="text" matInput formControlName="positionLegalRepresentative">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Persona de contacto</mat-label>
+            <input type="text" matInput formControlName="contactPerson">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo de persona de contacto</mat-label>
+            <input type="text" matInput formControlName="positioncontactPerson">
+        </mat-form-field>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button routerLink="/beneficiaries" color="primary">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

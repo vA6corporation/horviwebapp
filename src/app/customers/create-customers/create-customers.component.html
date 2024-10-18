@@ -1,0 +1,50 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="documentType">
+                <mat-option value="RUC">RUC</mat-option>
+                <mat-option value="DNI">DNI</mat-option>
+                <mat-option value="CE">CE</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Documento</mat-label>
+            <input type="email" matInput formControlName="document">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres/Razon social</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Consorcio</mat-label>
+            <input type="text" matInput formControlName="partnershipName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" autocomplete="none">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input type="text" matInput formControlName="mobileNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Direccion</mat-label>
+            <input type="text" matInput formControlName="address">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Comercial a cargo</mat-label>
+            <mat-select formControlName="commercialId">
+                @for (commercial of commercials; track commercial._id) {
+                <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button color="primary" routerLink="/customers">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

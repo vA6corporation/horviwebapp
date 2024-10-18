@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Seleccione un accionista</h2>
+<div mat-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field>
+            <mat-label>Busqueda</mat-label>
+            <input type="text" matInput formControlName="key">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <mat-action-list>
+        @for (shareholder of shareholders; track shareholder._id) {
+            <button mat-list-item [mat-dialog-close]="shareholder">
+                <span matListItemTitle>{{ shareholder.name | uppercase }}</span>
+                <span>{{ shareholder.documentType }}: {{ shareholder.document }}</span>
+            </button>
+        }
+    </mat-action-list>
+</div>
+<mat-dialog-actions>
+    <a href="/shareholders/create" target="_blank" mat-flat-button color="primary">
+        NUEVO ACCIONISTA
+    </a>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-dialog-close>CANCELAR</button>
+</mat-dialog-actions>

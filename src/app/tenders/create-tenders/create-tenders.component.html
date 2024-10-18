@@ -1,0 +1,119 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <input type="text" matInput formControlName="observations">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Personal a cargo</mat-label>
+            <mat-select formControlName="commercialId">
+                @for (commercial of commercials; track commercial._id) {
+                <mat-option [value]="commercial._id">{{ commercial.name | uppercase }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Descripcion del objeto</mat-label>
+            <input type="text" matInput formControlName="objectDescription">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Monto adjudicado</mat-label>
+            <input type="number" matInput formControlName="awardedAmount">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de emision</mat-label>
+            <input matInput [matDatepicker]="startDatePicker" formControlName="emitionAt">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+        <div formGroupName="partnership">
+            <mat-form-field appearance="fill">
+                <mat-label>Consorcio</mat-label>
+                <input type="text" matInput formControlName="name" (click)="onDialogSearchPartnerships()" readonly>
+            </mat-form-field>
+        </div>
+        <div formGroupName="business">
+            <mat-form-field appearance="fill">
+                <mat-label>Empresa</mat-label>
+                <input type="text" matInput formControlName="name" (click)="onDialogSearchBusinesses()" readonly>
+            </mat-form-field>
+        </div>
+        <div formGroupName="beneficiary">
+            <mat-form-field appearance="fill">
+                <mat-label>Beneficiario</mat-label>
+                <input type="text" matInput formControlName="name" (click)="onDialogSearchBeneficiaries()" readonly>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Estado de tramite</mat-label>
+            <mat-select formControlName="processStatusCode">
+                <mat-option value="01">REDACCION</mat-option>
+                <mat-option value="02">LEGALIZACION</mat-option>
+                <mat-option value="03">CONFORMIDAD</mat-option>
+                <mat-option value="04">CONSTITUIDO</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Estado de obra</mat-label>
+            <mat-select formControlName="constructionCode">
+                <mat-option value="01">EJECUCION</mat-option>
+                <mat-option value="02">POR TERMINAR</mat-option>
+                <mat-option value="03">PARALIZADA</mat-option>
+                <mat-option value="04">EN ARBITRAJE</mat-option>
+                <mat-option value="05">ANULADA</mat-option>
+                <mat-option value="06">FINALIZADA</mat-option>
+                <mat-option value="07">AMORTIZADO</mat-option>
+                <mat-option value="08">FIANZA EJECUTADA</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="user?.isAdmin">
+            <mat-label>Honorarios</mat-label>
+            <input type="number" matInput formControlName="commission">
+        </mat-form-field>
+        <!-- <ng-container *ngIf="user?.isAdmin">
+            <mat-list class="mb-3">
+                <div mat-subheader>Pagos</div>
+                <mat-list-item *ngFor="let payment of payments; let i = index">
+                    <div>
+                        {{ payment.charge.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2
+                        }) }}
+                        <br>
+                        <span class="text-muted">
+                            {{ payment.paymentAt | date: 'dd/MM/yyyy' }}
+                        </span>
+                    </div>
+                    <span class="spacer"></span>
+                    <button type="button" mat-icon-button (click)="onRemovePayment(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+            <button type="button" mat-raised-button color="primary" class="w-100 mb-3" [disabled]="isLoading"
+                (click)="onDialogPayments()">AGREGAR PAGO</button>
+        </ng-container>
+        <mat-list class="mb-3">
+            <div mat-subheader>Porcentaje de avance</div>
+            <mat-list-item *ngFor="let percentCompletion of percentCompletions; let i = index">
+                <div>
+                    P/E: {{ percentCompletion.percentProgrammated }} % - {{ percentCompletion.percentCompletion }} %
+                    <br>
+                    <span class="text-muted">
+                        {{ months[percentCompletion.month] }} {{ percentCompletion.year }}
+                    </span>
+                </div>
+                <span class="spacer"></span>
+                <button type="button" mat-icon-button (click)="onRemovePercentCompletion(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list> -->
+        <!-- <button type="button" mat-raised-button color="primary" class="w-100 mb-3" [disabled]="isLoading"
+            (click)="onDialogPercentCompletions()">AGREGAR AVANCE</button> -->
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button routerLink="/tenders" color="primary">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

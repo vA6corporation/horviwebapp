@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Fianzas</h2>
+<div mat-dialog-content>
+    <mat-action-list>
+        @for (surety of sureties; track surety._id) {
+        <a [href]="'/sureties' + '/' + surety._id + '/edit'" target="_blank" mat-list-item>
+            <span matListItemTitle>{{ surety.suretyLabel }}</span>
+            <span>{{ surety.policyNumber }}</span>
+        </a>
+        }
+    </mat-action-list>
+</div>
+<mat-dialog-actions>
+    <button type="button" (click)="onCreateSurety()" mat-flat-button mat-dialog-close color="primary">
+        AGREGAR RENOVACION
+    </button>
+    <span class="spacer"></span>
+    <button type="button" mat-raised-button mat-dialog-close color="primary">VOLVER</button>
+</mat-dialog-actions>

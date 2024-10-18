@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Cumpleañeros</h2>
+<div mat-dialog-content>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let business of businesses">
+      <div class="w-100">
+        <div class="d-flex w-100">
+          {{ business.name }}
+          <span class="spacer"></span> 
+          {{ business.representativeBirthDate | date: 'dd/MM' }}
+        </div>
+        <span class="text-muted">
+          {{ business.representativeName }}
+        </span>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+<mat-dialog-actions>
+  <span class="spacer"></span>
+  <button mat-stroked-button mat-dialog-close color="primary">VOLVER</button>
+</mat-dialog-actions>

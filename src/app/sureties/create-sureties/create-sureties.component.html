@@ -1,0 +1,111 @@
+<div class="container">
+    <h2 class="mat-title-large text-center text-uppercase">{{ tender?.objectDescription }}</h2>
+    <div>{{ tender?.code }}</div>
+    <h2 class="mat-title-medium text-center">{{ partnership?.name }}</h2>
+    <h2 class="mat-title-medium text-center">{{ business?.name }}</h2>
+    <span class="mat-divider"></span>
+    <h2 class="mat-title-medium text-center">{{ beneficiary?.name || 'SIN BENEFICIARIO' }}</h2>
+    <h2 class="mat-title-medium text-center text-muted">{{ commercial?.name }}</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <input type="text" matInput formControlName="observations">
+        </mat-form-field>
+        <div formGroupName="financier">
+            <mat-form-field appearance="fill">
+                <mat-label>Financiera</mat-label>
+                <input type="text" matInput formControlName="name" (click)="onDialogSearchFinanciers()" readonly>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>N° de poliza</mat-label>
+            <input type="text" matInput formControlName="policyNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de inicio</mat-label>
+            <input matInput [matDatepicker]="startDatePicker" formControlName="startAt">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de cumplimiento</mat-label>
+            <input matInput [matDatepicker]="endDatePicker" formControlName="endAt">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Suma asegurada</mat-label>
+            <input type="number" matInput formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Garantia</mat-label>
+            <input type="number" matInput formControlName="guarantee">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Pagare</mat-label>
+            <input type="number" matInput formControlName="pagare">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Prima</mat-label>
+            <input type="number" matInput formControlName="prima">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Comision</mat-label>
+            <input type="number" matInput formControlName="commission">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currencyCode">
+                <mat-option value="PEN">PEN</mat-option>
+                <mat-option value="USD">USD</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-list class="mb-1">
+            <div mat-subheader>Cheques</div>
+            @for (cheque of cheques; track $index; let i = $index) {
+            <mat-list-item>
+                <span matListItemTitle>{{ cheque.price.toFixed(2) }} {{ cheque.currencyCode }}</span>
+                <span>{{ cheque.paymentAt | date }}</span>
+                <div matListItemMeta>
+                    <button type="button" mat-icon-button (click)="onRemoveCheque(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+            }
+        </mat-list>
+        <button type="button" [disabled]="isLoading" mat-flat-button color="primary" class="w-100"
+            (click)="onDialogCreateCheques()">AGREGAR CHEQUE</button>
+        <mat-list class="mb-1">
+            <div mat-subheader>Depositos</div>
+            @for (deposit of deposits; track $index; let i = $index) {
+            <mat-list-item>
+                <span matListItemLine>{{ deposit.price.toFixed(2) }} {{ deposit.currencyCode }}</span>
+                <div matListItemMeta>
+                    <button type="button" mat-icon-button (click)="onRemoveDeposit(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-list-item>
+            }
+        </mat-list>
+        <button type="button" [disabled]="isLoading" mat-flat-button color="primary" class="w-100 mb-3"
+            (click)="onDialogCreateDeposits()">AGREGAR DEPOSITO</button>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isEmition">
+                Emision
+            </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isPayed">
+                Pagado
+            </mat-slide-toggle>
+        </div>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button color="primary" routerLink="/sureties">CANCELAR</button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">GUARDAR</button>
+        </div>
+    </form>
+</div>

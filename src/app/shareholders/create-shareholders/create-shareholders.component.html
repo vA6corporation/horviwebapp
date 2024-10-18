@@ -1,0 +1,166 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de Documento</mat-label>
+            <mat-select formControlName="documentType">
+                <mat-option value="RUC">RUC</mat-option>
+                <mat-option value="DNI">DNI</mat-option>
+                <mat-option value="CE">CE</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>N° de Documento</mat-label>
+            <input type="text" matInput formControlName="document" [maxlength]="maxlength">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres/Razon Social</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nacionalidad</mat-label>
+            <input type="text" matInput formControlName="nationality">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Estado civil</mat-label>
+            <mat-select formControlName="maritalStatus">
+                <mat-option value="SOLTERO">SOLTERO</mat-option>
+                <mat-option value="CASADO">CASADO</mat-option>
+                <mat-option value="DIVORCIADO">DIVORCIADO</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Porcentaje</mat-label>
+            <input type="number" matInput formControlName="percent">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Pais de Origen</mat-label>
+            <input type="text" matInput formControlName="countryOrigin" autocomplete="nope">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Direccion de Residencia</mat-label>
+            <input type="text" matInput formControlName="addressResidence" autocomplete="nope">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Pais de Residencia</mat-label>
+            <input type="text" matInput formControlName="countryResidence" autocomplete="nope">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Distrito de Residencia</mat-label>
+            <input type="text" matInput formControlName="districtResidence">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Provincia de Residencia</mat-label>
+            <input type="text" matInput formControlName="provinceResidence" autocomplete="nope">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Departamento de Residencia</mat-label>
+            <input type="text" matInput formControlName="departmentResidence">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Profesion/Ocupacion</mat-label>
+            <input type="text" matInput formControlName="professionOccupation">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo</mat-label>
+            <input type="text" matInput formControlName="position">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input type="text" matInput formControlName="mobileNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input type="text" matInput formControlName="phoneNumber" autocomplete="nope">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Anexo</mat-label>
+            <input type="text" matInput formControlName="annexed">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Institución</mat-label>
+            <input type="text" matInput formControlName="PEPInstitution">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo</mat-label>
+            <input type="text" matInput formControlName="PEPPositionn">
+        </mat-form-field>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isPublicCompaniesCurrently">
+                Desempeña alguna Función Pública actualmente?
+            </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+            <mat-slide-toggle formControlName="isPublicCompaniesLastFiveYear">
+                Ha desempeñado alguna Función Pública en los últimos cinco años ?
+            </mat-slide-toggle>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Empresa en la que ejerce o ejerció la función Pública </mat-label>
+            <input type="text" matInput formControlName="publicCompaniesInstitute">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo que ejerce o ejerció</mat-label>
+            <input type="text" matInput formControlName="publicCompaniesPosition">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Tiempo de Servicios </mat-label>
+            <input type="text" matInput formControlName="publicCompaniesTime">
+        </mat-form-field>
+        <h2 class="mat-title-medium">Conyuge</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de Documento</mat-label>
+            <mat-select formControlName="documentTypeSpouse">
+                <mat-option value="RUC">RUC</mat-option>
+                <mat-option value="DNI">DNI</mat-option>
+                <mat-option value="CE">CE</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>N° de Documento</mat-label>
+            <input type="text" matInput formControlName="documentSpouse" [maxlength]="maxlength">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombres/Razon Social</mat-label>
+            <input type="text" matInput formControlName="nameSpouse">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nacionalidad</mat-label>
+            <input type="text" matInput formControlName="nationalitySpouse">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Estado civil</mat-label>
+            <mat-select formControlName="maritalStatusSpouse">
+                <mat-option value="SOLTERO">SOLTERO</mat-option>
+                <mat-option value="CASADO">CASADO</mat-option>
+                <mat-option value="DIVORCIADO">DIVORCIADO</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="birthDatePickerSpouse" formControlName="birthDateSpouse">
+            <mat-datepicker-toggle matSuffix [for]="birthDatePickerSpouse"></mat-datepicker-toggle>
+            <mat-datepicker #birthDatePickerSpouse></mat-datepicker>
+        </mat-form-field>
+        <div class="d-flex">
+            <span class="spacer"></span>
+            <button type="button" mat-raised-button color="primary" routerLink="/shareholders">
+                CANCELAR
+            </button>
+            <div class="divider"></div>
+            <button type="submit" [disabled]="isLoading" mat-flat-button color="primary">
+                GUARDAR
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Seleccione un consorcio</h2>
+<div mat-dialog-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+        <mat-form-field>
+            <mat-label>Busqueda</mat-label>
+            <input type="text" matInput formControlName="key">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <mat-selection-list [multiple]="false">
+        @for (partnership of partnerships; track partnership._id) {
+            <mat-list-option [mat-dialog-close]="partnership">
+                <span matListItemTitle>{{ partnership.name | uppercase }}</span>
+                <span>{{ partnership.business?.name }}</span>
+            </mat-list-option>
+        }
+    </mat-selection-list>
+</div>
+<div class="spacer"></div>
+<mat-dialog-actions>
+    <a href="/partnerships/create" target="_blank" mat-flat-button color="primary">
+        NUEVO CONSORCIO
+    </a>
+    <button mat-raised-button mat-dialog-close color="warn"
+        [mat-dialog-close]="{ _id: null, name: null }">ELIMINAR</button>
+    <span class="spacer"></span>
+    <button mat-raised-button mat-dialog-close>CANCELAR</button>
+</mat-dialog-actions>

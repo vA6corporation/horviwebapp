@@ -1,0 +1,7 @@
+<mat-action-list role="list">
+    <button type="button" mat-list-item *ngFor="let payment of payments" (click)="onOpen(payment)">
+        {{ payment.charge.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+        <span class="spacer"></span>
+        {{ payment.paymentAt | date: 'dd/MM/yyyy' }}
+    </button>
+</mat-action-list>

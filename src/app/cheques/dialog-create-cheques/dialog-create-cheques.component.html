@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    @if (cheque) {
+        <h2 mat-dialog-title>Editar cheque</h2>
+    } @else {
+        <h2 mat-dialog-title>Agregar cheque</h2>
+    }
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Monto</mat-label>
+            <input type="number" matInput formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currencyCode">
+                <mat-option value="PEN">PEN</mat-option>
+                <mat-option value="USD">USD</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de cobro</mat-label>
+            <input matInput [matDatepicker]="endDatePicker" formControlName="paymentAt">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de prorroga</mat-label>
+            <input matInput [matDatepicker]="extensionPicker" formControlName="extensionAt">
+            <mat-datepicker-toggle matSuffix [for]="extensionPicker"></mat-datepicker-toggle>
+            <mat-datepicker #extensionPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <input type="text" matInput formControlName="observations">
+        </mat-form-field>
+    </div>
+    <div class="spacer"></div>
+    <mat-dialog-actions>
+        <span class="spacer"></span>
+        <button mat-button mat-raised-button color="primary" mat-dialog-close>CANCELAR</button>
+        <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

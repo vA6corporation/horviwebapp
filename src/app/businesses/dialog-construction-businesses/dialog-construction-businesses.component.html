@@ -1,0 +1,6 @@
+<h2>Obras</h2>
+<mat-list role="list">
+    <a mat-list-item [href]="[ '/constructions/' + element._id + '/edit' ]" target="_blank" role="listitem" *ngFor="let element of constructions">
+        {{ element.code }}
+    </a>
+  </mat-list>

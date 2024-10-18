@@ -1,0 +1,77 @@
+<mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex = $event" style="overflow: hidden;">
+    <mat-tab label="Documentos">
+        <ng-container *ngIf="isDragOver">
+            <div draggable="true" class="dragover d-flex align-items-center justify-content-center"
+                (dragleave)="onDragLeave($event)" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+                <h1 class="no-drag">ARRASTRE AQUI EL ARCHIVO</h1>
+            </div>
+        </ng-container>
+        <div [hidden]="isDragOver">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" (dragover)="onDragOver($event)">
+                <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                    <button mat-icon-button disabled></button>
+                    <button mat-raised-button (click)="onSelectFile(node)" color="primary">{{ node.name }}</button>
+                    <button mat-icon-button (click)="onDeleteNode(node)" class="text-muted">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-tree-node>
+                <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                    <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name" matTreeNodeToggle>
+                        <mat-icon class="mat-icon-rtl-mirror">
+                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                        </mat-icon>
+                    </button>
+                    {{ node.name | uppercase }}
+                    <button mat-icon-button (click)="fileInput.click()" class="text-muted ml-3">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onCreateNode(node)" class="text-muted">
+                        <mat-icon>create_new_folder</mat-icon>
+                    </button>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="after">
+                        <button (click)="onUpdateNode(node)" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button (click)="onDeleteNode(node)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar</span>
+                        </button>
+                    </mat-menu>
+                    <input type="file" #fileInput (change)="onFileSelected(fileInput.files, node, fileInput)"
+                        [accept]="accept" hidden multiple>
+                </mat-tree-node>
+            </mat-tree>
+        </div>
+    </mat-tab>
+    <mat-tab label="Preview">
+        <iframe [src]="url" frameborder="0"></iframe>
+    </mat-tab>
+    <mat-tab *ngIf="isUploading" label="Subiendo archivos">
+        <mat-list role="list">
+            <mat-list-item>
+                <h2 class="mb-2">Subiendo archivos</h2>
+            </mat-list-item>
+            <mat-list-item role="listitem" *ngFor="let file of uploadingFiles">
+                <div class="w-100">
+                    {{ file.name }}
+                    <span *ngIf="file.message"> - Error: {{ file.message }}</span>
+                    <br>
+                    <mat-progress-bar *ngIf="file.progressPercent < 100; else elseBlock" mode="determinate"
+                        [value]="file.progressPercent"></mat-progress-bar>
+                    <ng-template #elseBlock>
+                        <mat-progress-bar mode="buffer"></mat-progress-bar>
+                    </ng-template>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-tab>
+</mat-tab-group>
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button mat-stroked-button mat-dialog-close color="primary">VOLVER</button>
+    <button type="button" mat-raised-button color="primary" (click)="onCreateNode(null)">NUEVA CARPETA</button>
+</mat-dialog-actions>

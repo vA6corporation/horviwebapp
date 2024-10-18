@@ -1,0 +1,28 @@
+<div class="fixActionRow">
+    <h2 mat-dialog-title>Seleccione un beneficiario</h2>
+    <div mat-dialog-content>
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+            <mat-form-field>
+                <mat-label>Busqueda</mat-label>
+                <input type="text" matInput formControlName="key">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+        <mat-selection-list [multiple]="false">
+            @for (beneficiary of beneficiaries; track beneficiary._id) {
+                <mat-list-option [mat-dialog-close]="beneficiary">
+                    <span matListItemTitle>{{ beneficiary.name | uppercase }}</span>
+                    <span>RUC: {{ beneficiary.document }}</span>
+                </mat-list-option>
+            }
+        </mat-selection-list>
+    </div>
+    <div class="spacer"></div>
+    <mat-dialog-actions>
+        <a href="/beneficiaries/create" target="_blank" mat-flat-button color="primary">
+            NUEVO BENEFICIARIO
+        </a>
+        <span class="spacer"></span>
+        <button mat-raised-button mat-dialog-close color="primary">CANCELAR</button>
+    </mat-dialog-actions>
+</div>

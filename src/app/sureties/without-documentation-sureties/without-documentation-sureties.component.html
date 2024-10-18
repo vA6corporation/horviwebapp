@@ -1,0 +1,97 @@
+<div class="container">
+    <form [formGroup]="formGroup" autocomplete="off">
+        <div class="d-flex">
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione un rango de fechas</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Desde" formControlName="startDate">
+                    <input matEndDate placeholder="Hasta" formControlName="endDate" (dateChange)="onRangeChange()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <div formGroupName="financier" class="w-100">
+                <mat-form-field appearance="fill">
+                    <mat-label>Financiera</mat-label>
+                    <input type="text" matInput formControlName="name" (click)="onDialogSearchFinanciers()" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="policyNumber">
+                <th mat-header-cell *matHeaderCellDef>N° de poliza</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize">{{ element.policyNumber }}</td>
+            </ng-container>
+            <ng-container matColumnDef="invoice">
+                <th mat-header-cell *matHeaderCellDef>Factura ({{ countFiles('INVOICE') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'INVOICE')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="voucher">
+                <th mat-header-cell *matHeaderCellDef>Voucher ({{ countFiles('VOUCHER') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'VOUCHER')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="cheque">
+                <th mat-header-cell *matHeaderCellDef>Cheque ({{ countFiles('CHEQUE') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'CHEQUE')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="deposit">
+                <th mat-header-cell *matHeaderCellDef>Deposito ({{ countFiles('DEPOSIT') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'DEPOSIT')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="surety">
+                <th mat-header-cell *matHeaderCellDef>Fianza ({{ countFiles('SURETY') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'SURETY')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="text-right">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button [routerLink]="['/sureties', element._id, 'edit']" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

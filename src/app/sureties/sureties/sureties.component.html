@@ -1,0 +1,112 @@
+<div class="container">
+    <form [formGroup]="formGroup" autocomplete="off">
+        <div class="d-flex">
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo de fianza</mat-label>
+                <mat-select formControlName="suretyType" (selectionChange)="onSuretyChange()">
+                    <mat-option value="">TODAS LAS FIANZA</mat-option>
+                    <mat-option value="GAMF">ADELANTO DE MATERIALES</mat-option>
+                    <mat-option value="GADF">ADELANTO DIRECTO</mat-option>
+                    <mat-option value="GFCF">FIEL CUMPLIMIENTO</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="suretyTypeLabel">
+                <th mat-header-cell *matHeaderCellDef>Tipo de fianza</th>
+                <td mat-cell *matCellDef="let element">{{ element.suretyLabel }}</td>
+            </ng-container>
+            <ng-container matColumnDef="partnership">
+                <th mat-header-cell *matHeaderCellDef>Consorcio</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{ 'text-muted': !element.partnership }">
+                    {{ element.partnership?.name || 'NINGUNO' | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="business">
+                <th mat-header-cell *matHeaderCellDef>Empresa</th>
+                <td mat-cell *matCellDef="let element" class="truncate-cell">
+                    {{ element.business.name | uppercase }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="policyNumber">
+                <th mat-header-cell *matHeaderCellDef>N° de poliza</th>
+                <td mat-cell *matCellDef="let element">{{ element.policyNumber }}</td>
+            </ng-container>
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
+                <td mat-cell *matCellDef="let element">{{ element.startAt | date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="endDate">
+                <th mat-header-cell *matHeaderCellDef>Fecha de cuplimiento</th>
+                <td mat-cell *matCellDef="let element">{{ element.endAt | date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Suma asegurada</th>
+                <td mat-cell *matCellDef="let element">{{ element.price.toFixed(2) }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="observations">
+                <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{ 'text-muted': !element.observations}">{{ element.observations || 'NINGUNO' }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" width="160" class="text-right">
+                    @if (element.isPayed) {
+                        <button type="button" mat-icon-button>
+                            <mat-icon>paid</mat-icon>
+                        </button>
+                    }
+                    @if (element.isEmition) {
+                        <button type="button" mat-icon-button>
+                            <mat-icon>looks_one</mat-icon>
+                        </button>
+                    }
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button type="button" (click)="onSelectStatus(element, suretyStatus.WITHOUT_CHECK)" mat-menu-item>
+                            <mat-icon>bookmark</mat-icon>
+                            <span>Sin revisar</span>
+                        </button>
+                        <button type="button" (click)="onSelectStatus(element, suretyStatus.RENEW)" mat-menu-item>
+                            <mat-icon>bookmark</mat-icon>
+                            <span>Renovar</span>
+                        </button>
+                        <button type="button" (click)="onSelectStatus(element, suretyStatus.NOT_RENEW)" mat-menu-item>
+                            <mat-icon>bookmark</mat-icon>
+                            <span>No renovar</span>
+                        </button>
+                        <button type="button" (click)="onSelectStatus(element, suretyStatus.FREE)" mat-menu-item>
+                            <mat-icon>bookmark</mat-icon>
+                            <span>Liberado</span>
+                        </button>
+                        <button type="button" (click)="onSelectStatus(element, suretyStatus.DELETED)" mat-menu-item>
+                            <mat-icon>bookmark</mat-icon>
+                            <span>Anulado</span>
+                        </button>
+                        <a [routerLink]="['/sureties', element._id, 'edit']" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </a>
+                        <button type="button" (click)="onDelete(element._id)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [style.background]="row.color">
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

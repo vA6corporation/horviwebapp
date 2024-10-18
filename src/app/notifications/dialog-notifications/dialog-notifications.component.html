@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Notificaciones</h2>
+<div mat-dialog-content>
+    <mat-list role="list">
+        @for (notification of notifications; track notification._id) {
+            <mat-list-item role="listitem" class="px-0">
+                <span matListItemTitle>{{ notification.adjudicatedAt | date }} - {{ notification.commercial.name | uppercase }}</span>
+                 @for (winner of notification.seace.winners; track winner) {
+                    <span matListItemLine>{{ winner }}</span>
+                 }
+                 @if (notification.seace.winners.length > 2) {
+                     <div class="p-2"></div>
+                 }
+            </mat-list-item>
+        }
+      </mat-list>
+</div>
+<mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button" mat-raised-button mat-dialog-close>VOLVER</button>
+</mat-dialog-actions>

@@ -1,0 +1,34 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" autocomplete="off">
+    <h2 mat-dialog-title>Agregar pago</h2>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de pago</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="paymentAt">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Monto</mat-label>
+            <input type="number" matInput formControlName="charge">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cuenta de la empresa</mat-label>
+            <mat-select formControlName="bankId">
+                <mat-option *ngFor="let element of banks" [value]="element._id">{{ element.providerName }} - {{
+                    element.bankName }} {{ element.accountNumber }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Razon social</mat-label>
+            <mat-select formControlName="companyId">
+                <mat-option *ngFor="let company of companies" [value]="company._id">{{ company.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="spacer"></div>
+    <mat-dialog-actions>
+        <span class="spacer"></span>
+        <button mat-button mat-stroked-button color="primary" mat-dialog-close>CANCELAR</button>
+        <button type="submit" mat-raised-button color="primary">GUARDAR</button>
+    </mat-dialog-actions>
+</form>

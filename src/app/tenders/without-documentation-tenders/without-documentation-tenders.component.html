@@ -1,0 +1,117 @@
+<div class="container">
+    <form [formGroup]="formGroup" autocomplete="off">
+        <div class="d-flex">
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione un rango de fechas</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Desde" formControlName="startDate">
+                    <input matEndDate placeholder="Hasta" formControlName="endDate" (dateChange)="onRangeChange()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <div formGroupName="financier" class="w-100">
+                <mat-form-field appearance="fill">
+                    <mat-label>Financiera</mat-label>
+                    <input type="text" matInput formControlName="name" (click)="onDialogSearchFinanciers()" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef>Codigo</th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize">{{ element.code }}</td>
+            </ng-container>
+            <ng-container matColumnDef="advance">
+                <th mat-header-cell *matHeaderCellDef>Avance de obra ({{ countFiles('ADVANCE') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'ADVANCE')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="partnership">
+                <th mat-header-cell *matHeaderCellDef>Contrato de consorcio ({{ countFiles('PARTNERSHIP') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'PARTNERSHIP')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="tender">
+                <th mat-header-cell *matHeaderCellDef>Contrato de obra ({{ countFiles('TENDER') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'TENDER')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="legal">
+                <th mat-header-cell *matHeaderCellDef>Doc. legal ({{ countFiles('LEGAL') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'LEGAL')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="buenapro">
+                <th mat-header-cell *matHeaderCellDef>Buena pro ({{ countFiles('BUENAPRO') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'BUENAPRO')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="nombramiento">
+                <th mat-header-cell *matHeaderCellDef>Carta de nombramiento ({{ countFiles('NOMBRAMIENTO') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'NOMBRAMIENTO')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="document">
+                <th mat-header-cell *matHeaderCellDef>Documentos ({{ countFiles('DOCUMENT') }})</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    @if (hasFile(element, 'DOCUMENT')) {
+                        <button mat-icon-button>
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="text-right">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button [routerLink]="['/tenders', element._id, 'edit']" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [length]="length" (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
